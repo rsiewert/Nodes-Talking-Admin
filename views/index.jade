@@ -1,5 +1,19 @@
 extends layout
 
+block head
+
 block body
 
+	div(ng-controller='AppCtrl')
+		h2 {{name}}
+
+		div(ng-view)
+
+	div(ng-controller='RegistrationCtrl')
+
+		p
+			a(ng-click='loadRegs()')
+				h4 List Nodes
+
+		div#thetable
 
