@@ -10,16 +10,16 @@
     ]).
         config(function ($routeProvider, $locationProvider) {
             $routeProvider.
-                when('/nodes-list', {
-                    templateUrl: 'partials/nodes-list',
+                when('/view1', {
+                    templateUrl: 'partials/partial1',
                     controller: 'RegistrationCtrl'
                 }).
-                when('/node-detail/:nodeId', {
-                    templateUrl: 'partials/node-detail',
+                when('/view2', {
+                    templateUrl: 'partials/partial2',
                     controller: 'RegistrationCtrl'
                 }).
                 otherwise({
-                    redirectTo: '/nodes-list'
+                    redirectTo: '/view1'
                 })
 
             $locationProvider.html5Mode(true)
