@@ -26,7 +26,7 @@ block body
 	div(ng-controller='AppCtrl')
 		h2 {{name}}
 
-		ul.menu
+		//ul.menu
 			li
 				a(href='view1') view1
 			li
@@ -37,10 +37,9 @@ block body
 		div(ng-view)
 
 	div(ng-controller='RegistrationCtrl')
-		| Angular seed app: v
-		span(app-version)
+
 		p
-			a(ng-click='loadRegs()') List View
+			a(ng-click='loadRegs()') List Nodes
 
 		//div#thetable
 		//	script.
