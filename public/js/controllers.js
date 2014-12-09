@@ -66,7 +66,7 @@
                             row['Altitude']         = d[i].data.message.node.location.altitude
                             row['OriginTimestamp']  = d[i].data.message.originTimestamp
                             row['Updated']          = d[i].data.message.updated
-                           $scope.tableData.rows.push(row)
+                            $scope.tableData.rows.push(row)
                         }
                         var tbl = jQuery('#thetable').html("").WATable({
                     			preFill: false,
