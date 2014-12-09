@@ -33,9 +33,6 @@
 
         }]).
         controller('RegistrationCtrl',['$scope','$http',function ($scope,$http) {
-            // get the registrations
-            $scope.registrations = []
-
             $scope.loadRegs = function() {
                 console.log("**************INSIDE loadRegs().................")
                 $http({
