@@ -47,7 +47,7 @@
                         $scope.tableData.cols = {
                             NodeId:             {index:1,type:"string",unique:true},
                             Description:        {index:2,type:"string"},
-                            Status:             {index:3,type:"string",tooltip:"the status of the node"},
+                            Status:             {index:3,type:"string",tooltip:"status of the node"},
                             Latitude:           {index:4,type:"number"},
                             Longitude:          {index:5,type:"number"},
                             Altitude:           {index:6,type:"number"},
