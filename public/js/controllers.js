@@ -92,7 +92,7 @@
                 method: 'GET',
                 url: 'http://localhost:3000/getByNodeId/Registration/'+ $routeParams.nodeId
             }).success(function(data,status,headers,config) {
-                alert(JSON.stringify(data))
+                //alert(JSON.stringify(data))
                 $scope.detailData = data
             }).error(function (data, status, headers, config) {
                 $scope.nodeId = 'Error!'
