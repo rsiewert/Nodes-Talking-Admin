@@ -70,22 +70,28 @@
                     			debug: true,
                     			filter: true,
                                 rowClicked: function(data) {
-                                    alert(JSON.stringify(data.row))
-                                    //alert(JSON.stringify(data.column))
+                                    $scope.displayDetail(data)
                                 }
+
                     		}).data('WATable')
                         tbl.setData($scope.tableData)
 
-                        $scope.registrations = data
+                        //$scope.registrations = data
                     }).error(function(data,status,headers,config) {
                         $scope.registrations = [{Error: "Error in http call"}]
                     })
             }
-
-        }]).
-        controller('SensorCtrl', function ($scope) {
+            $scope.displayDetail = function(data) {
+                //alert(JSON.stringify(data.row.NodeId))
+                window.location = '/node-detail/'+data.row.NodeId
+            }
+        }]).controller('RegistrationDetailCtrl', function ($scope) {
+            $scope.init = function(data) {
+                alert(JSON.stringify(data.row.NodeId))
+                //window.location = '/node-detail/'+data.row.NodeId
+            }
+        }).controller('SensorCtrl', function ($scope) {
             // write Ctrl here
-
         })
 })()
 
