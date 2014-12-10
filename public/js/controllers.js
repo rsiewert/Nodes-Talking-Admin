@@ -85,12 +85,20 @@
                 //alert(JSON.stringify(data.row.NodeId))
                 window.location = '/node-detail/'+data.row.NodeId
             }
-        }]).controller('RegistrationDetailCtrl', function ($scope) {
-            $scope.init = function(data) {
-                alert(JSON.stringify(data.row.NodeId))
-                //window.location = '/node-detail/'+data.row.NodeId
-            }
-        }).controller('SensorCtrl', function ($scope) {
+        }]).
+        controller('RegistrationDetailCtrl',['$scope','$http','$routeParams',function ($scope,$http,$routeParams) {
+            $scope.nodeId = $routeParams.nodeId
+            $http({
+                method: 'GET',
+                url: 'http://localhost:3000/getByNodeId/Registration/'+ $routeParams.nodeId
+            }).success(function(data,status,headers,config) {
+                alert(JSON.stringify(data))
+                $scope.detailData = data
+            }).error(function (data, status, headers, config) {
+                $scope.nodeId = 'Error!'
+            })
+       }]).
+        controller('SensorCtrl', function ($scope) {
             // write Ctrl here
         })
 })()
