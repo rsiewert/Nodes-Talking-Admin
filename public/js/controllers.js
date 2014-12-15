@@ -31,7 +31,7 @@
                 })
 
         }]).
-        controller('RegistrationCtrl',['$scope','$http',function ($scope,$http) {
+        controller('RegistrationCtrl',['$scope','$http', 'userInfoSvc', function ($scope,$http, userInfoSvc) {
             $scope.loadRegs = function() {
                 console.log("**************INSIDE loadRegs().................")
                 $http({
@@ -79,6 +79,15 @@
                     }).error(function(data,status,headers,config) {
                         $scope.registrations = [{Error: "Error in http call"}]
                     })
+
+                    $scope.userInfo = userInfoSvc.getUserName()
+                    // userinfo.username
+                    // userinfo.email
+                    console.log('userinfo: ', $scope.userInfo)
+
+                    // this would be how we get the user info and perms. this belongs in a service.
+                    //TODO: there is a bug here somewhere, this is getting called twice
+
             }
 
         }]).
