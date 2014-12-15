@@ -32,7 +32,7 @@
                 })
 
         }]).
-        controller('RegistrationCtrl',['$scope','$http',function ($scope,$http) {
+        controller('RegistrationListCtrl',['$scope','$http',function ($scope,$http) {
             $scope.loadRegs = function() {
                 console.log("**************INSIDE loadRegs().................")
                 $http({
