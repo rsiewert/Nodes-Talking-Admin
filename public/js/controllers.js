@@ -31,7 +31,7 @@
                 })
 
         }]).
-        controller('RegistrationListCtrl',['$scope','$http',function ($scope,$http) {
+        controller('RegistrationListCtrl',['$scope','$http', 'userInfoSvc', function ($scope,$http, userInfoSvc) {
             $scope.loadRegs = function() {
                 console.log("**************INSIDE loadRegs().................")
                 $http({
@@ -64,15 +64,15 @@
                             row['Updated']          = d[i].data.message.updated
                             $scope.tableData.rows.push(row)
                         }
-                        var tbl = jQuery('#thetable').html("").WATable({
-                    			preFill: false,
-                    			debug: true,
-                    			filter: true,
+                    $scope.tbl = jQuery('#thetable').html("").WATable({
+                    			preFill:    false,
+                    			debug:      true,
+                    			filter:     true,
                                 rowClicked: function(data) {
                                     $scope.displayDetail(data)
                                 }
                     		}).data('WATable')
-                        tbl.setData($scope.tableData)
+                        $scope.tbl.setData($scope.tableData)
 
                         $scope.registrations = data
                     }).error(function(data,status,headers,config) {
@@ -107,7 +107,6 @@
        }]).
         controller('SensorCtrl', function ($scope) {
             // write Ctrl here
-
         })
 })()
 

@@ -18,10 +18,9 @@ var express = require('express'),
   LocalStrategy = require('passport-local').Strategy,
   flash = require('connect-flash'),
   session = require('express-session'),
-  bcrypt = require('bcrypt'),
+  bcrypt = require('bcryptjs'),
   sift = require('sift'),
-  fs = require('fs')
-  //mongoskin
+  fs = require('fs'),
   mongo = require('mongoskin'),
   db = mongo.db("mongodb://localhost/registration", {safe : true})
 
