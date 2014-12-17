@@ -12,7 +12,6 @@
             }).
                 success(function (data, status, headers, config) {
                     $scope.name = data.name;
-                    //console.log("d = " + $scope.name)
                 }).
                 error(function (data, status, headers, config) {
                     $scope.name = 'Error!';
@@ -63,16 +62,16 @@
                             row['Altitude']         = d[i].data.message.node.location.altitude
                             row['OriginTimestamp']  = d[i].data.message.originTimestamp
                             row['Updated']          = d[i].data.message.updated
+
                             $scope.tableData.rows.push(row)
                         }
-                        var tbl = jQuery('#thetable').html("").WATable({
-                    			preFill: false,
-                    			debug: true,
-                    			filter: true,
+                        jQuery('#thetable').html("").WATable({
+                    			preFill:    false,
+                    			debug:      true,
+                    			filter:     true,
                                 rowClicked: function(data) {
                                     $scope.displayDetail(data)
                                 }
-
                     		}).data('WATable')
                         tbl.setData($scope.tableData)
 
@@ -80,6 +79,15 @@
                     }).error(function(data,status,headers,config) {
                         $scope.registrations = [{Error: "Error in http call"}]
                     })
+
+                    $scope.userInfo = userInfoSvc.getUserName()
+                    // userinfo.username
+                    // userinfo.email
+                    console.log('userinfo: ', $scope.userInfo)
+
+                    // this would be how we get the user info and perms. this belongs in a service.
+                    //TODO: there is a bug here somewhere, this is getting called twice
+
             }
             $scope.displayDetail = function(data) {
                 //alert(JSON.stringify(data.row.NodeId))
