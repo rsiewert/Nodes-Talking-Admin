@@ -31,7 +31,7 @@
                 })
 
         }]).
-        controller('RegistrationCtrl',['$scope','$http', 'userInfoSvc', function ($scope,$http, userInfoSvc) {
+        controller('RegistrationListCtrl',['$scope','$http',function ($scope,$http) {
             $scope.loadRegs = function() {
                 console.log("**************INSIDE loadRegs().................")
                 $http({
@@ -69,8 +69,7 @@
                     			debug: true,
                     			filter: true,
                                 rowClicked: function(data) {
-                                    alert(JSON.stringify(data.row))
-                                    //alert(JSON.stringify(data.column))
+                                    $scope.displayDetail(data)
                                 }
                     		}).data('WATable')
                         tbl.setData($scope.tableData)
@@ -89,8 +88,23 @@
                     //TODO: there is a bug here somewhere, this is getting called twice
 
             }
-
+            $scope.displayDetail = function(data) {
+                //alert(JSON.stringify(data.row.NodeId))
+                window.location = '/node-detail/'+data.row.NodeId
+            }
         }]).
+        controller('RegistrationDetailCtrl',['$scope','$http','$routeParams',function ($scope,$http,$routeParams) {
+            $scope.nodeId = $routeParams.nodeId
+            $http({
+                method: 'GET',
+                url: 'http://localhost:3000/getByNodeId/Registration/'+ $routeParams.nodeId
+            }).success(function(data,status,headers,config) {
+                //alert(JSON.stringify(data))
+                $scope.detailData = data
+            }).error(function (data, status, headers, config) {
+                $scope.nodeId = 'Error!'
+            })
+       }]).
         controller('SensorCtrl', function ($scope) {
             // write Ctrl here
 

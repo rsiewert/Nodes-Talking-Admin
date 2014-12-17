@@ -7,9 +7,8 @@ block body
 	div(ng-controller='AppCtrl')
 		h2 {{name}}
 
-		div(ng-view)
 
-	div(ng-controller='RegistrationCtrl')
+	div(ng-controller='RegistrationListCtrl')
 
 		p
 			a(ng-click='loadRegs()')
@@ -17,3 +16,4 @@ block body
 
 		div#thetable
 
+		div(ng-view)
