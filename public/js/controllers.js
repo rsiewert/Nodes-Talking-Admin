@@ -31,7 +31,7 @@
                 })
 
         }]).
-        controller('RegistrationListCtrl',['$scope','$http',function ($scope,$http) {
+        controller('RegistrationListCtrl',['$scope','$http', 'userInfoSvc', function ($scope,$http, userInfoSvc) {
             $scope.loadRegs = function() {
                 console.log("**************INSIDE loadRegs().................")
                 $http({
@@ -65,7 +65,7 @@
 
                             $scope.tableData.rows.push(row)
                         }
-                        jQuery('#thetable').html("").WATable({
+                    $scope.tbl = jQuery('#thetable').html("").WATable({
                     			preFill:    false,
                     			debug:      true,
                     			filter:     true,
@@ -73,9 +73,9 @@
                                     $scope.displayDetail(data)
                                 }
                     		}).data('WATable')
-                        tbl.setData($scope.tableData)
+                        $scope.tbl.setData($scope.tableData)
 
-                        //$scope.registrations = data
+                        $scope.registrations = data
                     }).error(function(data,status,headers,config) {
                         $scope.registrations = [{Error: "Error in http call"}]
                     })
