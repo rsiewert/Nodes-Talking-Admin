@@ -31,7 +31,7 @@
                 })
 
         }]).
-        controller('RegistrationCtrl',['$scope','$http', 'userInfoSvc', function ($scope,$http, userInfoSvc) {
+        controller('RegistrationListCtrl',['$scope','$http',function ($scope,$http) {
             $scope.loadRegs = function() {
                 console.log("**************INSIDE loadRegs().................")
                 $http({
@@ -43,7 +43,7 @@
                         $scope.tableData.cols = {
                             NodeId:             {index:1,type:"string",unique:true},
                             Description:        {index:2,type:"string"},
-                            Status:             {index:3,type:"string",tooltip:"the status of the node"},
+                            Status:             {index:3,type:"string",tooltip:"status of the node"},
                             Latitude:           {index:4,type:"number"},
                             Longitude:          {index:5,type:"number"},
                             Altitude:           {index:6,type:"number"},
@@ -72,8 +72,10 @@
                                 rowClicked: function(data) {
                                     $scope.displayDetail(data)
                                 }
-                    	}).data('WATable').setData($scope.tableData)
+                    		}).data('WATable')
+                        tbl.setData($scope.tableData)
 
+                        //$scope.registrations = data
                     }).error(function(data,status,headers,config) {
                         $scope.registrations = [{Error: "Error in http call"}]
                     })
@@ -88,17 +90,24 @@
 
             }
             $scope.displayDetail = function(data) {
-                //TODO flesh out what it takes to get the necessary info to the node-detail page
-                alert(JSON.stringify(data.row))
+                //alert(JSON.stringify(data.row.NodeId))
+                window.location = '/node-detail/'+data.row.NodeId
             }
-
-            //execute the loading of the registrations
-            $scope.loadRegs()
-
         }]).
+        controller('RegistrationDetailCtrl',['$scope','$http','$routeParams',function ($scope,$http,$routeParams) {
+            $scope.nodeId = $routeParams.nodeId
+            $http({
+                method: 'GET',
+                url: 'http://localhost:3000/getByNodeId/Registration/'+ $routeParams.nodeId
+            }).success(function(data,status,headers,config) {
+                //alert(JSON.stringify(data))
+                $scope.detailData = data
+            }).error(function (data, status, headers, config) {
+                $scope.nodeId = 'Error!'
+            })
+       }]).
         controller('SensorCtrl', function ($scope) {
             // write Ctrl here
-
         })
 })()
 

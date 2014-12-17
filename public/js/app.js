@@ -12,11 +12,11 @@
             $routeProvider.
                 when('/nodes-list', {
                     templateUrl: 'partials/nodes-list',
-                    controller: 'RegistrationCtrl'
+                    controller: 'RegistrationListCtrl'
                 }).
                 when('/node-detail/:nodeId', {
                     templateUrl: 'partials/node-detail',
-                    controller: 'RegistrationCtrl'
+                    controller: 'RegistrationDetailCtrl'
                 }).
                 otherwise({
                     redirectTo: '/nodes-list'
