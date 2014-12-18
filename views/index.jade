@@ -4,16 +4,17 @@ block head
 
 block body
 
-	div(ng-controller='AppCtrl')
-		h2 {{name}}
+    div(ng-controller='AppCtrl')
+        nav.navbar.navbar-default
+            div.collapse.navbar-collapse
 
+                ul.nav.navbar-nav.navbar-left
+                    li
+                        a(href="/nodes-list") List
+                    li
+                        a(href="/node-detail") Detail
+                    li
+                        a(href="/settings") Settings
 
-	div(ng-controller='RegistrationListCtrl')
-
-		p
-			a(ng-click='loadRegs()')
-				h4 List Nodes
-
-		div#thetable
-
-	div(ng-view)
+    div.container-fluid
+        div(ng-view).row

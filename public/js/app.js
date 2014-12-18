@@ -11,15 +11,15 @@
         config(function ($routeProvider, $locationProvider) {
             $routeProvider.
                 when('/nodes-list', {
-                    templateUrl: 'partials/nodes-list',
+                    templateUrl: 'views/nodes-list',
                     controller: 'RegistrationListCtrl'
                 }).
-                when('/node-detail/:nodeId', {
-                    templateUrl: 'partials/node-detail',
+                when('/node-detail', {
+                    templateUrl: 'views/node-detail',
                     controller: 'RegistrationDetailCtrl'
                 }).
                 otherwise({
-                    redirectTo: '/nodes-list'
+                    redirectTo: '/'
                 })
 
             $locationProvider.html5Mode(true)

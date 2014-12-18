@@ -1,11 +1,12 @@
-
+var util = require('util')
 /*
  * GET home page.
  */
 
 exports.index = function(req, res){
-    console.log('calling index')
-  res.render('index', { user: req.user })
+//      console.log('calling index')
+//      console.log(util.inspect(req.path, true, null))
+      res.render('index', { user: req.user })
 }
 
 exports.partials = function (req, res) {

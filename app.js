@@ -128,9 +128,12 @@ if (env === 'production') {
  * Routes
  */
 
+// view routes
+require('./routes/views')(app)
+
 // serve index and view partials
 app.get('/', routes.ensureAuthenticated, routes.index)
-app.get('/partials/:name', routes.ensureAuthenticated, routes.partials)
+//app.get('/partials/:name', routes.ensureAuthenticated, routes.partials)
 // I don't know where to put this.
 app.get('/api/userinfo', routes.ensureAuthenticated, routes.userinfo)
 
