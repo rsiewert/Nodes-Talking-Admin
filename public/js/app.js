@@ -14,12 +14,12 @@
                     templateUrl: 'partials/nodes-list',
                     controller: 'RegistrationListCtrl'
                 }).
-                when('/node-detail/:nodeId', {
+                when('/node-detail', {
                     templateUrl: 'partials/node-detail',
                     controller: 'RegistrationDetailCtrl'
                 }).
                 otherwise({
-                    redirectTo: '/nodes-list'
+                    redirectTo: '/'
                 })
 
             $locationProvider.html5Mode(true)

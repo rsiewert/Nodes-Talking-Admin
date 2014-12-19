@@ -4,7 +4,11 @@
 
 (function() {
     angular.module('myApp.controllers', []).
-        controller('AppCtrl', ['$scope','$http', function ($scope, $http) {
+        controller('AppCtrl', ['$scope','$http','$location', function ($scope, $http, $location) {
+
+            $scope.setRoute = function(route) {
+                $location.path(route)
+            }
 
             $http({
                 method: 'GET',
@@ -31,8 +35,18 @@
                 })
 
         }]).
-        controller('RegistrationListCtrl',['$scope','$http', 'userInfoSvc', function ($scope,$http, userInfoSvc) {
-            $scope.loadRegs = function() {
+        controller('RegistrationListCtrl',['$scope','$http',function ($scope,$http) {
+            $scope.loadTable = function() {
+                $http({
+                    method: 'GET',
+                    url: 'http://localhost:3000/getAll/Registration'
+                }).success(function(data,status,headers,config) {
+                    $scope.registrations = data
+                }).error(function(data,status,headers,config) {
+                    $scope.registrations = [{Error: "Error in http call"}]
+                })
+            }
+            $scope.loadWaTable = function() {
                 console.log("**************INSIDE loadRegs().................")
                 $http({
                     method: 'GET',
@@ -65,10 +79,10 @@
 
                             $scope.tableData.rows.push(row)
                         }
-                    $scope.tbl = jQuery('#thetable').html("").WATable({
-                    			preFill:    false,
-                    			debug:      true,
-                    			filter:     true,
+                        var tbl = jQuery('#thetable').html("").WATable({
+                    			preFill: false,
+                    			debug: true,
+                    			filter: true,
                                 rowClicked: function(data) {
                                     $scope.displayDetail(data)
                                 }

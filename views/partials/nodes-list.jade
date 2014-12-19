@@ -8,4 +8,32 @@
 	$$ | \$$ |\$$$$$$  |\$$$$$$$ |\$$$$$$$\ $$$$$$$  |        $$$$$$$$\ $$ |$$$$$$$  |  \$$$$  |
 	\__|  \__| \______/  \_______| \_______|\_______/         \________|\__|\_______/    \____/
 
+div(ng-controller='RegistrationListCtrl')
+
+	h4 List View
+
+	table.table
+		thead
+			tr
+				th NodeId
+				th Description
+				th Status
+				th Latitude
+				th Longitude
+				th Altitude
+				th Origin Timestamp
+				th Updated
+		tbody
+			div(ng-init='loadTable()')
+				tr(ng-repeat='registration in registrations')
+					td {{registration.data.message.node.nodeId}}
+					td {{registration.data.message.node.description}}
+					td {{registration.data.message.node.status}}
+					td {{registration.data.message.node.location.latitude}}
+					td {{registration.data.message.node.location.longitude}}
+					td {{registration.data.message.node.location.altitude}}
+					td {{registration.data.message.originTimestamp}}
+					td {{registration.data.data.message.updated}}
+
+
 

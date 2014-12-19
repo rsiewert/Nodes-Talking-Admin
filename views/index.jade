@@ -5,15 +5,17 @@ block head
 block body
 
 	div(ng-controller='AppCtrl')
-		h2 {{name}}
+		div.col-lg-offset-1
+			h2 Nodes-Talking Admin
+			div#menu
+				a.btn(ng-click="setRoute('nodes-list')") List
+				a.btn(ng-click="setRoute('node-detail')") Detail
+		hr
+		header#header
+			h1#logo
+
+		div.shadow
+
+		div(ng-view)
 
 
-	div(ng-controller='RegistrationListCtrl')
-
-		p
-			a(ng-click='loadRegs()')
-				h4 List Nodes
-
-		div#thetable
-
-	div(ng-view)
