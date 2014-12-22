@@ -42,6 +42,7 @@
                     url: 'http://localhost:3000/getAll/Registration'
                 }).success(function(data,status,headers,config) {
                     $scope.registrations = data
+                    $scope.displayedCollection = [].concat($scope.registrations)
                 }).error(function(data,status,headers,config) {
                     $scope.registrations = [{Error: "Error in http call"}]
                 })
