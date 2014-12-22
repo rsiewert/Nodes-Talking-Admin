@@ -3,6 +3,7 @@
 // Declare app level module which depends on filters, and services
 (function() {
     angular.module('myApp', [
+        'smart-table',
         'myApp.controllers',
         'myApp.filters',
         'myApp.services',
