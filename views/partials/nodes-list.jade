@@ -12,6 +12,8 @@ div(ng-controller='RegistrationListCtrl')
 
 	h4 List View
 
+	div(ng-init='loadTable()')
+		
 	table.table
 		thead
 			tr
@@ -24,7 +26,6 @@ div(ng-controller='RegistrationListCtrl')
 				th Origin Timestamp
 				th Updated
 		tbody
-			div(ng-init='loadTable()')
 				tr(ng-repeat='registration in registrations')
 					td {{registration.data.message.node.nodeId}}
 					td {{registration.data.message.node.description}}
