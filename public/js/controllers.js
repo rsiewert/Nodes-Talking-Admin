@@ -36,11 +36,12 @@
 
         }]).
         controller('RegistrationListCtrl',['$scope','$http',function ($scope,$http) {
-            $scope.loadTable = function() {
+            $scope.loadData = function() {
                 $http({
                     method: 'GET',
                     url: 'http://localhost:3000/getAll/Registration'
                 }).success(function(data,status,headers,config) {
+                    //alert("hi")
                     $scope.registrations = data
                     $scope.displayedCollection = [].concat($scope.registrations)
                 }).error(function(data,status,headers,config) {

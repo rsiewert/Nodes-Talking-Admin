@@ -12,19 +12,19 @@ div(ng-controller='RegistrationListCtrl')
 
 	h4 List View
 
-	div(ng-init='loadTable()')
+	div(ng-init='loadData()')
 
 	table.table.table-striped(st-safe-src='registrations', st-table='displayedCollection')
 		thead
 			tr
-				th(st-sort='nodeId') NodeId
-				th(st-sort='description') Description
-				th(st-sort='status') Status
-				th(st-sort='latitude') Latitude
-				th(st-sort='longitude') Longitude
-				th(st-sort='altitude') Altitude
+				th(st-sort='nodeId') 			NodeId
+				th(st-sort='description') 		Description
+				th(st-sort='status') 			Status
+				th(st-sort='latitude') 			Latitude
+				th(st-sort='longitude') 		Longitude
+				th(st-sort='altitude') 			Altitude
 				th(st-sort='originTimestamp') Origin Timestamp
-				th(st-sort='updated') Updated
+				th(st-sort='updated') 			Updated
 		tbody
 				tr(ng-repeat='registration in displayedCollection')
 					td {{registration.data.message.node.nodeId}}
