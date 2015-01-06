@@ -38,6 +38,7 @@
                 url: 'http://localhost:3000/getAll/Registration'
             }).success(function(data){
                     $scope.nodeData = data
+                    $scope.nodeDataCount = $scope.nodeData.length
                     console.log('node data ', $scope.nodeData)
                 }
             )

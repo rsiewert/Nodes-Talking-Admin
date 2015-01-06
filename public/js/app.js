@@ -6,7 +6,8 @@
         'myApp.controllers',
         'myApp.filters',
         'myApp.services',
-        'myApp.directives'
+        'myApp.directives',
+        'angularUtils.directives.dirPagination'
     ]).
         config(function ($routeProvider, $locationProvider) {
             $routeProvider.
@@ -23,5 +24,8 @@
                 })
 
             $locationProvider.html5Mode(true)
+        }).
+        config(function(paginationTemplateProvider){
+            paginationTemplateProvider.setPath('/js/lib/dir-paginate/dirPagination.tpl.html')
         })
 })()
