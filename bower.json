@@ -20,7 +20,8 @@
     "bootstrap": "*",
     "jquery": "*",
     "angular" : "*",
-    "bcryptjs" : "*"
+    "bcryptjs" : "*",
+    "angular-utils-pagination"  : "*"
 
 
   }
