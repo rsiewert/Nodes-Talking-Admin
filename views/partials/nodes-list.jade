@@ -1,7 +1,27 @@
+base(href='/nodes-list')
 div(ng-controller='RegistrationListCtrl')
 
-    p
-        a(ng-click='loadRegs()')
-            h4 List Nodes
+    div.input-group
+        input(type="text", placeholder="Filter...", ng-model="filterText")
 
-    div#thetable
+    table.table-bordered.table-striped.table-condensed
+        thead
+            th Node ID
+            th Description
+            th Status
+            th Lat.
+            th Long.
+            th Alt.
+            th Origin T.S.
+            th Updated
+        tbody
+            tr(ng-repeat="node in nodeData | filter : filterText")
+                td {{node.data.message.node.nodeId}}
+                td {{node.data.message.node.description}}
+                td
+                    span.label(ng-class="{'label-warning' : node.data.message.node.status == 'YELLOW', 'label-success' : node.data.message.status == 'GREEN', 'label-danger' : node.data.message.status == 'RED' }") {{node.data.message.node.status}}
+                td {{node.data.message.node.location.latitude}}
+                td {{node.data.message.node.location.longitude}}
+                td {{node.data.message.node.location.altitude}}
+                td {{node.data.message.originTimestamp | date : 'medium' }}
+                td --
