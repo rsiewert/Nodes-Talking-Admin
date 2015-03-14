@@ -32,63 +32,26 @@
 
         }]).
         controller('RegistrationListCtrl',['$scope','$http', 'userInfoSvc', function ($scope,$http, userInfoSvc) {
-            $scope.loadRegs = function() {
-                console.log("**************INSIDE loadRegs().................")
-                $http({
-                    method: 'GET',
-                    url: 'http://localhost:3000/getAll/Registration'
-                }).success(function(data,status,headers,config) {
-                        console.log(data)
-                        $scope.tableData = {cols:{},rows:[]}
-                        $scope.tableData.cols = {
-                            NodeId:             {index:1,type:"string",unique:true},
-                            Description:        {index:2,type:"string"},
-                            Status:             {index:3,type:"string",tooltip:"status of the node"},
-                            Latitude:           {index:4,type:"number"},
-                            Longitude:          {index:5,type:"number"},
-                            Altitude:           {index:6,type:"number"},
-                            OriginTimestamp:    {index:7,type:"string"},
-                            Updated:            {index:8,type:"string"}
-                        }
 
-                        var d = data
-                        for(var i=0; i<50; i++) {
-                            var row = {}
-                            row['NodeId']           = d[i].data.message.node.nodeId
-                            row['Description']      = d[i].data.message.node.description
-                            row['Status']           = d[i].data.message.node.status
-                            row['Latitude']         = d[i].data.message.node.location.latitude
-                            row['Longitude']        = d[i].data.message.node.location.longitude
-                            row['Altitude']         = d[i].data.message.node.location.altitude
-                            row['OriginTimestamp']  = d[i].data.message.originTimestamp
-                            row['Updated']          = d[i].data.message.updated
+            $http({
+                method: 'GET',
+                url: 'http://localhost:3000/getAll/Registration'
+            }).success(function(data){
+                    $scope.nodeData = data
+                    $scope.nodeDataCount = $scope.nodeData.length
+                    console.log('node data ', $scope.nodeData)
+                }
+            )
 
-                            $scope.tableData.rows.push(row)
-                        }
-                    $scope.tbl = jQuery('#thetable').html("").WATable({
-                    			preFill:    false,
-                    			debug:      true,
-                    			filter:     true,
-                                rowClicked: function(data) {
-                                    $scope.displayDetail(data)
-                                }
-                    		}).data('WATable')
-                        $scope.tbl.setData($scope.tableData)
+            // this would be how we get the user info and perms. this belongs in a service.
 
-                        $scope.registrations = data
-                    }).error(function(data,status,headers,config) {
-                        $scope.registrations = [{Error: "Error in http call"}]
-                    })
+            $scope.userInfo = userInfoSvc.getUserName()
+            // userinfo.username
+            // userinfo.email
+            console.log('userinfo: ', $scope.userInfo)
 
-                    $scope.userInfo = userInfoSvc.getUserName()
-                    // userinfo.username
-                    // userinfo.email
-                    console.log('userinfo: ', $scope.userInfo)
 
-                    // this would be how we get the user info and perms. this belongs in a service.
-                    //TODO: there is a bug here somewhere, this is getting called twice
 
-            }
             $scope.displayDetail = function(data) {
                 //alert(JSON.stringify(data.row.NodeId))
                 window.location = '/node-detail/'+data.row.NodeId
