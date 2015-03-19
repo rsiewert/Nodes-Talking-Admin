@@ -35,7 +35,7 @@
 
             $http({
                 method: 'GET',
-                url: 'http://localhost:3000/getAll/Registration'
+                url: 'http://52.11.253.219:3000/getAll/Registration'
             }).success(function(data){
                     $scope.nodeData = data
                     $scope.nodeDataCount = $scope.nodeData.length
