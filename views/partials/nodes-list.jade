@@ -1,5 +1,5 @@
 base(href='/nodes-list')
-div(ng-controller='RegistrationListCtrl')
+div()
 
     div.input-group
         input(type="text", placeholder="Filter...", ng-model="filterText")
@@ -16,7 +16,7 @@ div(ng-controller='RegistrationListCtrl')
                 th Origin T.S.
                 th Updated
             tbody
-                tr(dir-paginate="node in nodeData | filter : filterText | itemsPerPage : 10", total-items="nodeDataCount", pagination-id="nodePage")
+                tr(ng-repeat="node in nodeData")
                     td {{node.data.message.node.nodeId}}
                     td {{node.data.message.node.description}}
                     td
@@ -27,6 +27,6 @@ div(ng-controller='RegistrationListCtrl')
                     td {{node.data.message.originTimestamp | date : 'medium' }}
                     td --
 
-    div
-        dir-pagination-controls(template-url="/js/lib/dir-paginate/dirPagination.tpl.html", pagination-id="nodePage")
+    //div(dir-pagination-controls)
+
 
