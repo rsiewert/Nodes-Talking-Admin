@@ -61,7 +61,7 @@
             $scope.nodeId = $routeParams.nodeId
             $http({
                 method: 'GET',
-                url: 'http://localhost:3000/getByNodeId/Registration/'+ $routeParams.nodeId
+                url: 'http://52.11.253.219:3000/getByNodeId/Registration/'+ $routeParams.nodeId
             }).success(function(data,status,headers,config) {
                 //alert(JSON.stringify(data))
                 $scope.detailData = data
